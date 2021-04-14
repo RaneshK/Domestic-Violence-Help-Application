@@ -36,11 +36,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  assets:
-   - assets/logos/facebook.jpg
-   - assets/logos/google.jpg
-
-
   fonts:
     - family: OpenSans
       fonts:
