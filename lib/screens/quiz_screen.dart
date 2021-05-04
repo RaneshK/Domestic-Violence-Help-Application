@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_login_ui/screens/quiz_screen.dart';
 import 'package:flutter_login_ui/utilities/constants.dart';
+import 'package:flutter_sms/flutter_sms.dart';
+import 'package:sms/sms.dart';
 
 class QuizScreen extends StatefulWidget {
   @override
@@ -16,7 +18,12 @@ class _QuizScreenState extends State<QuizScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: okayButton,
+        onPressed: (){
+          _sendSMS1();
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => leadDialog);
+        },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -42,7 +49,12 @@ class _QuizScreenState extends State<QuizScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: mediumButton,
+        onPressed: (){
+          _sendSMS1();
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => leadDialog);
+        },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -68,7 +80,12 @@ class _QuizScreenState extends State<QuizScreen> {
       width: double.infinity,
       child: RaisedButton(
         elevation: 5.0,
-        onPressed: badButton,
+        onPressed: (){
+          _sendSMS1();
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => leadDialog);
+        },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
@@ -89,13 +106,13 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void okayButton(){
-    /* 
+    /*
      The user is not any danger
      Get the user's contact details and send them a SMS or alert that they are okay
     */
 
     print("The user is okay");
-    
+
   }
 
   void mediumButton(){
@@ -110,10 +127,10 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
   void badButton(){
-    /* 
+    /*
      The situation is really bad and the user may be in great danger
-     Get the user's contact details and send them a SMS or alert that the situation is really not 
-     good and that they may be in great danger. Possibly alert the appropriate authorities. 
+     Get the user's contact details and send them a SMS or alert that the situation is really not
+     good and that they may be in great danger. Possibly alert the appropriate authorities.
     */
 
     print("The user is not okay");
@@ -173,7 +190,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       ),
                       _buildMediumButton(),
                       _buildBadButton()
-                     
+
                     ],
                   ),
                 ),
@@ -185,3 +202,42 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 }
+
+
+void _sendSMS(String message, List<String> recipents) async{
+  String _result = await sendSMS(message: message, recipients: recipents)
+      .catchError((onError) {
+    print(onError);
+  });
+  print(_result);
+}
+
+void _sendSMS1() {
+  SmsSender sender = new SmsSender();
+  String address = "1111111";
+
+  SmsMessage message = new SmsMessage(address, 'Hello flutter!');
+  sender.sendSms(message);
+
+}
+
+Dialog leadDialog = Dialog(
+  child: Container(
+    height: 80.0,
+    width: 360.0,
+    color: Colors.white,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Text(
+            'Message was sent!',
+            style:
+            TextStyle(color: Colors.black, fontSize: 22.0),
+          ),
+        ),
+      ],
+    ),
+  ),
+);
