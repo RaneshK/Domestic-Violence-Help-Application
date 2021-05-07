@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login_ui/screens/login_screen.dart';
+import 'dart:io';
 
-void main() => runApp(MyApp());
+void main(){
+  HttpOverrides.global = new MyHttpOverrides();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -14,3 +18,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+  
+}
+

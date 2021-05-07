@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_login_ui/screens/quiz_screen.dart';
 import 'package:flutter_login_ui/utilities/constants.dart';
+import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   Widget _buildEmailTF() {
     return Column(
@@ -24,6 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: emailController,
             keyboardType: TextInputType.emailAddress,
             style: TextStyle(
               color: Colors.white,
@@ -59,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: kBoxDecorationStyle,
           height: 60.0,
           child: TextField(
+            controller: passwordController,
             obscureText: true,
             style: TextStyle(
               color: Colors.white,
@@ -106,11 +114,27 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void signInUser(){
-    Navigator.push(
-      context, 
-      MaterialPageRoute(builder: (context) => QuizScreen())
-    );
+  signInUser() async {
+    print(Text(emailController.text));
+    print(Text(passwordController.text));
+
+    // The location of the file that allows a connection to the database
+    var url = Uri.parse('https://localhost/checkUserFromFlutter.php');
+
+
+    // Create the json object with the user's login details to send to the server
+    var data = {
+      "email": emailController.text, 
+      "pass": passwordController.text
+    };
+
+    
+    // Connect to the database
+    var response = await http.get(url,headers: {"Accept":"application/json"});
+    var responseBody = json.decode(response.body);
+    print(responseBody);
+  
+
   }
 
   @override

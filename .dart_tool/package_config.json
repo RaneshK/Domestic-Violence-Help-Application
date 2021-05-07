@@ -39,9 +39,9 @@
     },
     {
       "name": "cupertino_icons",
-      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.2",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "fake_async",
@@ -56,8 +56,26 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_sms",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_sms-2.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/ranesh/Flutter/flutter/packages/flutter_test",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "js",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -80,10 +98,22 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "plugin_platform_interface",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/ranesh/Flutter/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "sms",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/sms-0.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
     },
     {
       "name": "source_span",
@@ -128,19 +158,55 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "url_launcher",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_linux",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_macos",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_platform_interface-2.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_web",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_windows",
+      "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "vector_math",
       "rootUri": "file:///Users/ranesh/Flutter/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
-      "name": "flutter_login_ui",
+      "name": "flutter_app",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.1"
+      "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-04-14T22:49:18.952281Z",
+  "generated": "2021-05-04T23:27:29.616677Z",
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }
