@@ -128,13 +128,34 @@ class _LoginScreenState extends State<LoginScreen> {
       "pass": passwordController.text
     };
 
-    
+    /*
     // Connect to the database
     var response = await http.get(url,headers: {"Accept":"application/json"});
     var responseBody = json.decode(response.body);
     print(responseBody);
-  
+  */
 
+    // Connect to the database and check if the user exists
+    Map<String, String> headers = {"Accept":"application/json"};
+
+    // Make POST request
+    var response = await http.post(url, headers: headers, body: data);
+
+    print("RESPONSE BODY TEXT" + response.body);
+
+    // Copy the response body text to a variable
+    String temp = response.body.toString();
+  
+    // Check if the user exists and log them in if they do
+     if(temp.contains("exists")){
+       // The user exists; move the user to the main screen
+       Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => QuizScreen()),
+      );
+     } else {
+       // The user does not exist; show the user something
+     }
   }
 
   @override
