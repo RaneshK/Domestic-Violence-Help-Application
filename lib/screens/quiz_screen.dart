@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_login_ui/screens/quiz_screen.dart';
@@ -23,7 +24,7 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
         color: Colors.green,
         child: Text(
-          'Godzilla',
+          questionArray[0].toString(),
           style: TextStyle(
             color: Colors.white,
             letterSpacing: 1.5,
@@ -49,7 +50,7 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
         color: Colors.yellow,
         child: Text(
-          'Batman',
+          questionArray[1].toString(),
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -75,7 +76,7 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
         color: Colors.red,
         child: Text(
-          'Superman',
+          questionArray[2].toString(),
           style: TextStyle(
             color: Color(0xFF527DAA),
             letterSpacing: 1.5,
@@ -86,6 +87,61 @@ class _QuizScreenState extends State<QuizScreen> {
         ),
       ),
     );
+  }
+
+  // Variables to use in the widgets
+  // Stores the postion of the question array
+  var arrayPostion;
+  var questionArray = [];
+
+  
+
+
+  String generateNewQuestionAndAnswers(){
+
+    // Array of questions to display to the user
+    var questions = ['Pick a movie', 'Which one is your favourite colour', 'Choose and animal', 'Which console do you prefer', 'Which brand of car do you like'];
+    
+    // The question to display to the user
+    String displayQuestion;
+
+    // Generate a random number
+    var random = new Random();
+
+    arrayPostion = random.nextInt(questions.length);
+    displayQuestion = questions[arrayPostion];
+
+
+    // Get the correct answers for the correct question
+    var question0Answers = ['Godzilla', 'Superman', 'Batman']; 
+    var question1Answers = ['Orange', 'Purple', 'White'];
+    var question2Answers = ['Penguin', 'Tiger', 'Goose'];
+    var question3Answers = ['Playstation', 'Xbox', 'Wii'];
+    var question4Answers = ['Toyota', 'Mitsubishi', 'Honda'];
+
+    if (arrayPostion == 0){
+      questionArray = question0Answers;
+    } else if (arrayPostion == 1){
+      questionArray = question1Answers;
+    } else if (arrayPostion == 2){
+      questionArray = question2Answers;
+    } else if (arrayPostion == 3){
+      questionArray = question3Answers;
+    } else if (arrayPostion == 4){
+      questionArray = question4Answers;
+    }
+
+    print(questionArray[0]);
+    print(questionArray[1]);
+    print(questionArray[2]);
+
+
+
+
+    
+
+
+    return displayQuestion;
   }
 
   void okayButton(){
@@ -158,7 +214,7 @@ class _QuizScreenState extends State<QuizScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        'Pick a movie',
+                        generateNewQuestionAndAnswers(),
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'OpenSans',
