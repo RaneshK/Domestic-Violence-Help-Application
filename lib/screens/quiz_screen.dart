@@ -131,18 +131,9 @@ class _QuizScreenState extends State<QuizScreen> {
       questionArray = question4Answers;
     }
 
-    print(questionArray[0]);
-    print(questionArray[1]);
-    print(questionArray[2]);
-
-
-
-
-    
-
-
     return displayQuestion;
   }
+
 
   void okayButton(){
     /* 
@@ -151,7 +142,30 @@ class _QuizScreenState extends State<QuizScreen> {
     */
 
     print("The user is okay");
-    
+
+    /* 
+      Show the user a confirmation after they have choosen a button. (The message has been sent
+      to the user's appropriate contacts).
+    */
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Thanks for playing"),
+          content: new Text("That's correct"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new ElevatedButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void mediumButton(){
@@ -162,6 +176,30 @@ class _QuizScreenState extends State<QuizScreen> {
     */
 
     print("The user is alright");
+
+    /* 
+      Show the user a confirmation after they have choosen a button. (The message has been sent
+      to the user's appropriate contacts).
+    */
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Thanks for playing"),
+          content: new Text("That's correct"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new ElevatedButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
 
   }
 
@@ -174,6 +212,30 @@ class _QuizScreenState extends State<QuizScreen> {
 
     print("The user is not okay");
 
+
+    /* 
+      Show the user a confirmation after they have choosen a button. (The message has been sent
+      to the user's appropriate contacts).
+    */
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Thanks for playing"),
+          content: new Text("That's correct"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new ElevatedButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override

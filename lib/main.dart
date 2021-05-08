@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+// Ignores the need for a signed Certificate to connect to mySQL database and server
 class MyHttpOverrides extends HttpOverrides{
   @override
   HttpClient createHttpClient(SecurityContext context){
