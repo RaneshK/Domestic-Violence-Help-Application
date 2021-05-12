@@ -113,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   signInUser() async {
+
     print(Text(emailController.text));
     print(Text(passwordController.text));
 
@@ -125,13 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
       "email": emailController.text, 
       "pass": passwordController.text
     };
-
-    /*
-    // Connect to the database
-    var response = await http.get(url,headers: {"Accept":"application/json"});
-    var responseBody = json.decode(response.body);
-    print(responseBody);
-  */
 
     // Connect to the database and check if the user exists
     Map<String, String> headers = {"Accept":"application/json"};
@@ -152,7 +146,60 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => QuizScreen()),
       );
      } else {
-       // The user does not exist; show the user something
+       // The user does not exist; Tell the user to sign up for an account on the website
+       showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("An error has occured"),
+          content: new Text("Your email or password is incorrect"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new ElevatedButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void mediumButton(){
+    /*
+     The situation is okay but not too extreme
+     Get the user's contact details and send them a SMS or alert that the situation may get out
+     hand
+    */
+
+    print("The user is alright");
+
+    /* 
+      Show the user a confirmation after they have choosen a button. (The message has been sent
+      to the user's appropriate contacts).
+    */
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("An error has occured"),
+          content: new Text("Your email or password is incorrect"),
+          actions: <Widget>[
+            // usually buttons at the bottom of the dialog
+            new ElevatedButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
      }
   }
 
