@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_login_ui/screens/quiz_screen.dart';
@@ -11,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
+  String value;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -136,16 +139,17 @@ class _LoginScreenState extends State<LoginScreen> {
     print("RESPONSE BODY TEXT" + response.body);
 
     // Copy the response body text to a variable
-    String temp = response.body.toString();
-  
+    String temp = jsonDecode(response.body);
+
+    // Copy the response of the post request to a variable (If the user is logged in it should be the user's ID)
+    print("THe value of temp is: " + temp);
+    
+   value = temp;
+
+    
+
     // Check if the user exists and log them in if they do
-     if(temp.contains("exists")){
-       // The user exists; move the user to the main screen
-       Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => QuizScreen()),
-      );
-     } else {
+     if(temp.contains("No")){
        // The user does not exist; Tell the user to sign up for an account on the website
        showDialog(
       context: context,
@@ -166,6 +170,11 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       },
     );
+     } else {
+       // The user exists; move the user to the main screen
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => QuizScreen(value: value),
+      ));
   }
 
   void mediumButton(){

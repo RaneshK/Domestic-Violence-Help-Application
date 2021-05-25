@@ -1,15 +1,26 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_login_ui/screens/login_screen.dart';
 import 'package:flutter_login_ui/screens/quiz_screen.dart';
 import 'package:flutter_login_ui/utilities/constants.dart';
+import 'package:http/http.dart' as http;
+
 
 class QuizScreen extends StatefulWidget {
+  
+  String value;
+  QuizScreen({this.value});
+
   @override
-  _QuizScreenState createState() => _QuizScreenState();
+  _QuizScreenState createState() => _QuizScreenState(value);
 }
 
 class _QuizScreenState extends State<QuizScreen> {
+
+
+  String value;
+  _QuizScreenState(this.value);
 
   Widget _buildOkayButton() {
    return Container(
@@ -94,13 +105,10 @@ class _QuizScreenState extends State<QuizScreen> {
   var arrayPostion;
   var questionArray = [];
 
-  
-
-
   String generateNewQuestionAndAnswers(){
 
     // Array of questions to display to the user
-    var questions = ['Pick a movie', 'Which one is your favourite colour', 'Choose and animal', 'Which console do you prefer', 'Which brand of car do you like'];
+    var questions = ['Which planet is the hottest in the solar system?', 'Which natural disaster is measured with a Richter scale?', 'What animals are pearls found in?', 'What does BMW stand for?', 'Which country produces the most coffee in the world?'];
     
     // The question to display to the user
     String displayQuestion;
@@ -113,11 +121,11 @@ class _QuizScreenState extends State<QuizScreen> {
 
 
     // Get the correct answers for the correct question
-    var question0Answers = ['Godzilla', 'Superman', 'Batman']; 
-    var question1Answers = ['Orange', 'Purple', 'White'];
-    var question2Answers = ['Penguin', 'Tiger', 'Goose'];
-    var question3Answers = ['Playstation', 'Xbox', 'Wii'];
-    var question4Answers = ['Toyota', 'Mitsubishi', 'Honda'];
+    var question0Answers = ['Venus', 'Mars', 'Earth']; 
+    var question1Answers = ['Tsunamis', 'Cyclones', 'Earthquakes'];
+    var question2Answers = ['Prawns', 'Oysters', 'Crabs'];
+    var question3Answers = ['Basic Motor Works', 'Bavarian Motor Works', 'Boats Machines Wheels'];
+    var question4Answers = ['Australia', 'Brazil', 'Japan'];
 
     if (arrayPostion == 0){
       questionArray = question0Answers;
@@ -135,13 +143,35 @@ class _QuizScreenState extends State<QuizScreen> {
   }
 
 
-  void okayButton(){
+  okayButton() async {
     /* 
      The user is not any danger
      Get the user's contact details and send them a SMS or alert that they are okay
     */
 
     print("The user is okay");
+
+    // Text to append to the url so that the user's id can be retrived from the GET array in php on the server
+    String pre = "?id=";
+
+   
+    // The location of the file that allows a connection to the database
+    var url = "https://localhost/sendSMS.php" + pre + value;
+
+    var sendSMSURL = Uri.parse(url);
+
+    // Append the headers for the request
+    Map<String, String> headers = {"Accept":"application/json"};
+
+    // Make GET request
+    var response = await http.get(sendSMSURL);
+
+    print("RESPONSE BODY TEXT" + response.body);
+
+    // Copy the response body text to a variable
+    String temp = response.body.toString();
+
+    print("This is the url " + url.toString());
 
     /* 
       Show the user a confirmation after they have choosen a button. (The message has been sent
@@ -168,7 +198,7 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 
-  void mediumButton(){
+  void mediumButton() async {
     /*
      The situation is okay but not too extreme
      Get the user's contact details and send them a SMS or alert that the situation may get out
@@ -181,6 +211,32 @@ class _QuizScreenState extends State<QuizScreen> {
       Show the user a confirmation after they have choosen a button. (The message has been sent
       to the user's appropriate contacts).
     */
+   // Text to append to the url so that the user's id can be retrived from the GET array in php on the server
+    String pre = "?id=";
+
+   
+    // The location of the file that allows a connection to the database
+    var url = "https://localhost/sendSMS.php" + pre + value;
+
+    var sendSMSURL = Uri.parse(url);
+
+    // Append the headers for the request
+    Map<String, String> headers = {"Accept":"application/json"};
+
+    // Make GET request
+    var response = await http.get(sendSMSURL);
+
+    print("RESPONSE BODY TEXT" + response.body);
+
+    // Copy the response body text to a variable
+    String temp = response.body.toString();
+
+    print("This is the url " + url.toString());
+
+    /* 
+      Show the user a confirmation after they have choosen a button. (The message has been sent
+      to the user's appropriate contacts).
+    */
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -200,18 +256,36 @@ class _QuizScreenState extends State<QuizScreen> {
         );
       },
     );
-
   }
 
-  void badButton(){
+  void badButton() async {
     /* 
      The situation is really bad and the user may be in great danger
      Get the user's contact details and send them a SMS or alert that the situation is really not 
      good and that they may be in great danger. Possibly alert the appropriate authorities. 
     */
 
-    print("The user is not okay");
+    // Text to append to the url so that the user's id can be retrived from the GET array in php on the server
+    String pre = "?id=";
 
+   
+    // The location of the file that allows a connection to the database
+    var url = "https://localhost/sendSMS.php" + pre + value;
+
+    var sendSMSURL = Uri.parse(url);
+
+    // Append the headers for the request
+    Map<String, String> headers = {"Accept":"application/json"};
+
+    // Make GET request
+    var response = await http.get(sendSMSURL);
+
+    print("RESPONSE BODY TEXT" + response.body);
+
+    // Copy the response body text to a variable
+    String temp = response.body.toString();
+
+    print("This is the url " + url.toString());
 
     /* 
       Show the user a confirmation after they have choosen a button. (The message has been sent
