@@ -138,7 +138,7 @@ if($_SESSION['loggedin'] == true){
     </div>
     <div class="form-group">
         <label for="contactLastName">Last Name</label>
-        <input type="text" class="form-control" name="contactLastName" value="<?php echo $CONTACT_PHONE_NUMBER ?>"" placeholder=" <?php echo $CONTACT_LAST_NAME ?>" required>
+        <input type="text" class="form-control" name="contactLastName" value="<?php echo $CONTACT_LAST_NAME ?>"" placeholder=" <?php echo $CONTACT_LAST_NAME ?>" required>
     </div>
     <div class="form-group">
         <label for="contactPhoneNumber">Phone Number</label>
