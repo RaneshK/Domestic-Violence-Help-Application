@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
      } else {
-       // The user exists; move the user to the main screen
+       // The user exists; move the user to the main screen; send the userID to the next page as well
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => QuizScreen(value: value),
       ));

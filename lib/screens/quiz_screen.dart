@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 
 
 class QuizScreen extends StatefulWidget {
-  
+
+  // Get the user ID from the login screen
   String value;
   QuizScreen({this.value});
 
@@ -154,9 +155,12 @@ class _QuizScreenState extends State<QuizScreen> {
     // Text to append to the url so that the user's id can be retrived from the GET array in php on the server
     String pre = "?id=";
 
-   
+    // Append which button is pressed to the url for the php server
+    String option = "&option=1";
+
+
     // The location of the file that allows a connection to the database
-    var url = "https://localhost/sendSMS.php" + pre + value;
+    var url = "https://localhost/sendSMS.php" + pre + value + option;
 
     var sendSMSURL = Uri.parse(url);
 
@@ -170,6 +174,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
     // Copy the response body text to a variable
     String temp = response.body.toString();
+
+    print(sendSMSURL);
 
     print("This is the url " + url.toString());
 
@@ -207,16 +213,15 @@ class _QuizScreenState extends State<QuizScreen> {
 
     print("The user is alright");
 
-    /* 
-      Show the user a confirmation after they have choosen a button. (The message has been sent
-      to the user's appropriate contacts).
-    */
-   // Text to append to the url so that the user's id can be retrived from the GET array in php on the server
+    // Text to append to the url so that the user's id can be retrived from the GET array in php on the server
     String pre = "?id=";
+
+    // Append which button is pressed to the url for the php server
+    String option = "&option=2";
 
    
     // The location of the file that allows a connection to the database
-    var url = "https://localhost/sendSMS.php" + pre + value;
+    var url = "https://localhost/sendSMS.php" + pre + value + option;
 
     var sendSMSURL = Uri.parse(url);
 
@@ -226,10 +231,12 @@ class _QuizScreenState extends State<QuizScreen> {
     // Make GET request
     var response = await http.get(sendSMSURL);
 
-    print("RESPONSE BODY TEXT" + response.body);
+    //print("RESPONSE BODY TEXT" + response.body);
 
     // Copy the response body text to a variable
     String temp = response.body.toString();
+
+    print(sendSMSURL);
 
     print("This is the url " + url.toString());
 
@@ -256,21 +263,30 @@ class _QuizScreenState extends State<QuizScreen> {
         );
       },
     );
+  
+
+   
+   
+  
   }
 
   void badButton() async {
-    /* 
-     The situation is really bad and the user may be in great danger
-     Get the user's contact details and send them a SMS or alert that the situation is really not 
-     good and that they may be in great danger. Possibly alert the appropriate authorities. 
+    /*
+     The situation is okay but not too extreme
+     Get the user's contact details and send them a SMS or alert that the situation is out of 
+     hand and that they need help ASAP
     */
+      print("The user is in distress");
 
     // Text to append to the url so that the user's id can be retrived from the GET array in php on the server
     String pre = "?id=";
 
+    // Append which button is pressed to the url for the php server
+    String option = "&option=3";
+
    
     // The location of the file that allows a connection to the database
-    var url = "https://localhost/sendSMS.php" + pre + value;
+    var url = "https://localhost/sendSMS.php" + pre + value + option;
 
     var sendSMSURL = Uri.parse(url);
 
@@ -284,6 +300,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
     // Copy the response body text to a variable
     String temp = response.body.toString();
+
+    print(sendSMSURL);
 
     print("This is the url " + url.toString());
 
