@@ -15,8 +15,11 @@ if (isset($_POST['submit'])){
     @$useremail =  $dbConn->escape_string($_POST['email']);
     @$password = $dbConn->escape_string($_POST['password']);
 
+    // Hash the password to match with the databse
+    $hashedPassword = hash("sha256", $password);
+
     // Create the SQL query to check if the user exists in the database
-    $sql = "SELECT * FROM User WHERE email = '$useremail' AND password = '$password'";
+    $sql = "SELECT * FROM User WHERE email = '$useremail' AND password = '$hashedPassword'";
 
     // Perform the SQL query
     $recordSet = $dbConn->query($sql);

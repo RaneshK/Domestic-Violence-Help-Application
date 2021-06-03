@@ -13,7 +13,6 @@ if (isset($_POST['submit'])){
     $CONTACTFIRSTNAME = $_POST['contactFirstName'];
     $CONTACTLASTNAME = $_POST['contactLastName'];
     $CONTACTPHONENUMBER = $_POST['contactPhoneNumber'];
-    $CONTACTMESSAGETOASSOCIATE = $_POST['contactMessageToSend'];
     $CONTACTID = $_POST['contactContactID'];
     
 }
@@ -22,30 +21,9 @@ if (isset($_POST['submit'])){
     echo $CONTACTFIRSTNAME;
     echo $CONTACTLASTNAME;
     echo $CONTACTPHONENUMBER;
-    echo "This is the message field from contacts page: " . $CONTACTMESSAGETOASSOCIATE;
-    echo "This is the message field from contacts page: " . $CONTACTID;
-    // Query the database to get the messageID using the messageName
-    $getTheMessageID = "SELECT messageID FROM Messages WHERE messageName = '$CONTACTMESSAGETOASSOCIATE'";
-
-      // Connect to the database
-      $dbConn = new mysqli("localhost", "root", "", "Users");
-
-      if($dbConn->connect_error){
-          die("The connection to the database has failed" . $dbconn->connect_error);
-      }
-
-
-   // Perform the sql query
-   if($rs = $dbConn->query($getTheMessageID)){
-   while ($row = $rs->fetch_assoc()){
-        $CONTACTMESSAGEID = $row['messageID'];
-   }
-} else {
-    // Make NULL to allow creation of contact before there are any messages in the database
-    $CONTACTMESSAGEID = "NULL";
-}
+    
     // Create the sql query to update the contact's details
-    $sql = "UPDATE `Contacts` SET `contactID`='$CONTACTID',`PhoneNumber`='$CONTACTPHONENUMBER',`firstName`='$CONTACTFIRSTNAME',`lastName`='$CONTACTLASTNAME',`UserID`='$userId',`messageID`='$CONTACTMESSAGEID' WHERE `contactID` = '$CONTACTID' ";
+    $sql = "UPDATE `Contacts` SET `contactID`='$CONTACTID',`PhoneNumber`='$CONTACTPHONENUMBER',`firstName`='$CONTACTFIRSTNAME',`lastName`='$CONTACTLASTNAME',`UserID`='$userId' WHERE `contactID`='$CONTACTID'";
 
 
     // Connect to the database

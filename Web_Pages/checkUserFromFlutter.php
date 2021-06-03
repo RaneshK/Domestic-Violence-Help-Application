@@ -7,8 +7,12 @@ require "connectToDatabase.php";
 $userEmail = $_POST['email'];
 $userPassword = $_POST['pass'];
 
+// Hash the password to store in the databse
+$hashedPassword = hash("sha256", $userPassword);
+
+
 // Create the query
-$sql = "SELECT * FROM User WHERE email = '$userEmail' AND password = '$userPassword'";
+$sql = "SELECT * FROM User WHERE email = '$userEmail' AND password = '$hashedPassword'";
 
 // Perform the SQL query
 $recordSet = $dbConn->query($sql);

@@ -18,21 +18,43 @@ if($dbConn->connect_error){
 @$userEmail =  $dbConn->escape_string($_POST['email']);
 @$password = $dbConn->escape_string($_POST['password']);
 
+// Hash the password to store in the databse
+$hashedPassword = hash("sha256", $password);
 
+/* 
+echo strval($hashedPassword);
 echo strval($fname);
 echo strval($lname);
 echo strval($userEmail);
 echo strval($password);
-echo strval($uniqueID);
+echo strval($uniqueID); 
+*/
 
-// Create the sql query to insert the uesr into the database
-$sql = "INSERT INTO `User`(`ID`, `firstName`, `lastName`, `email`, `password`) VALUES ('$uniqueID','$fname','$lname','$userEmail','$password')";
+$sql = "INSERT INTO `User`(`ID`, `firstName`, `lastName`, `email`, `password`) VALUES ('$uniqueID','$fname','$lname','$userEmail','$hashedPassword')";
 
 if ($recordSet = $dbConn->query($sql)){
-    echo "Success";
-    // Redirect the user to the contacts page
+
+
+   // Create the sql queries to add message templates for the user
+   $createBlankUserMessageOne = "INSERT INTO `Messages`(`messageBody`, `userID`, `messageOption`) VALUES ('ADD YOUR MESSAGE HERE','$uniqueID','1')";
+   $createBlankUserMessageTwo = "INSERT INTO `Messages`(`messageBody`, `userID`, `messageOption`) VALUES ('ADD YOUR MESSAGE HERE','$uniqueID','2')";
+   $createBlankUserMessageThree = "INSERT INTO `Messages`(`messageBody`, `userID`, `messageOption`) VALUES ('ADD YOUR MESSAGE HERE','$uniqueID','3')";
+
+  // Add the three blank messages for the user to edit
+  $dbConn->query($createBlankUserMessageOne);
+  $dbConn->query($createBlankUserMessageTwo);
+  $dbConn->query($createBlankUserMessageThree); 
+
+  echo "Success";
+    // Redirect the user to the login page
     header("Location: login.php");
     exit();
+
+
+
+
+
+
 } else {
     echo "Something went wrong";
 }

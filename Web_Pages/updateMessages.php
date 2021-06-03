@@ -12,20 +12,18 @@ $userId = $_SESSION["ID"];
 
 if (isset($_POST['submit'])){
     // Get the details entered in the form to update the user's message
-    $USERMESSAGENAME = $_POST['userMessageName'];
     $USERMESSAGEBODY = $_POST['userMessageBody'];
+    $USERMESSAGEOPTION = $_POST['userMessageOption'];
     $USERMESSAGEID = $_POST['userMessageID'];
 }
 
     echo $messageID;
     echo "               ";
-    echo $USERMESSAGENAME;
-    echo "               ";
     echo $USERMESSAGEBODY;
     echo "               ";
 
     // Create the sql query to update the user's message
-    $sql = "UPDATE `Messages` SET `messageID`='$USERMESSAGEID',`messageName`='$USERMESSAGENAME',`messageBody`='$USERMESSAGEBODY',`userID`='$userId' WHERE `messageID`= '$USERMESSAGEID'";
+    $sql = "UPDATE `Messages` SET `messageBody`='$USERMESSAGEBODY',`userID`='$userId',`messageOption`='$USERMESSAGEOPTION' WHERE `messageOption`='$USERMESSAGEOPTION' AND userID = '$userId' ";
 
     // Connect to the database
     $dbConn = new mysqli("localhost", "root", "", "Users");
